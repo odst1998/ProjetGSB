@@ -1,0 +1,38 @@
+
+
+INSERT INTO `visiteur` (`id_laboratoire`, `id_secteur`, `nom_visiteur`, `prenom_visiteur`, `adresse_visiteur`, `cp_visiteur`, `ville_visiteur`, `date_embauche`, `login_visiteur`, `pwd_visiteur`, `type_visiteur`) 
+VALUES
+(3, 2, 'Willan', 'Heraux', '8 cours Lafontaine', '29000', 'BREST', '1992-12-11', 'Cgsbsio', 'secret', 'C');
+
+INSERT INTO `visiteur` (`id_laboratoire`, `id_secteur`, `nom_visiteur`, `prenom_visiteur`, `adresse_visiteur`, `cp_visiteur`, `ville_visiteur`, `date_embauche`, `login_visiteur`, `pwd_visiteur`, `type_visiteur`) 
+VALUES
+(3, 2, 'Alliam', 'Loysing', '8 cours Lafontaine', '29000', 'BREST', '1992-12-11', 'Agsbsio', 'secret', 'A');
+
+
+
+
+CREATE TABLE danger
+(
+    code_danger VARCHAR(3) PRIMARY KEY NOT NULL,
+    libelle_danger VARCHAR(50)
+);
+
+INSERT INTO `danger` (`code_danger`, `libelle_danger`) VALUES ('BEN','Bénin');
+INSERT INTO `danger` (`code_danger`, `libelle_danger`) VALUES ('FAI','Faible');
+INSERT INTO `danger` (`code_danger`, `libelle_danger`) VALUES ('MOY','Moyen');
+INSERT INTO `danger` (`code_danger`, `libelle_danger`) VALUES ('IMP','Important');
+
+
+
+ALTER TABLE interagir
+ADD dangerosite VARCHAR(3);
+ALTER TABLE interagir
+ADD CONSTRAINT `fk_interagir_danger` FOREIGN KEY (dangerosite) REFERENCES danger(code_danger);
+
+INSERT INTO `interagir` (`id_medicament`, `med_id_medicament`, `dangerosite`) VALUES (3,2,'BEN');
+
+INSERT INTO `interagir` (`id_medicament`, `med_id_medicament`, `dangerosite`) VALUES (5,10,'MOY');
+
+INSERT INTO `type_individu` (`id_type_individu`, `lib_type_individu`) VALUES (1,'Un Mec');
+
+INSERT INTO `prescrire` (`id_dosage`, `id_medicament`, `id_type_individu`, `posologie`) VALUES (1,1,1,'BlaBlaBla');
